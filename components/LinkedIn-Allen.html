@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LinkedIn Practice</title>
+  <style>
+    .text-area {
+      width: 300px;
+      height: 100px;
+    }
+    ul, li {
+      list-style: none;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin: 5px;
+    }
+    li.active {
+      border: 1px solid red;
+    }
+
+    .preview-panel {
+      width: 200px;
+      height: 400px;
+      position: relative;
+      top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <textarea class="text-area"></textarea>
+  <ul class="emoji-container">
+  </ul>
+  <div class="preview-panel"></div>
+  <script type="text/javascript">
+    const ARROW_KEYS = {
+      keyLeft: 37,
+      keyRight: 39
+    };
+
+    let activeIndex = 0;
+    const textArea = document.querySelector('.text-area');
+    const emojis = ['sad', 'kiss', 'loved'];
+    let filteredEmojis = emojis;
+    const emojiContainer = document.querySelector('.emoji-container');
+    const previewPanel = document.querySelector('.preview-panel');
+    let emojiList;
+
+    function buildEmojiList(emojis) {
+      while (emojiContainer.hasChildNodes()) {
+        emojiContainer.removeChild(emojiContainer.lastChild);
+      }
+
+      emojis.forEach((emoji, index) => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('list-item');
+        if (index === 0) {
+          listItem.classList.add('active');
+        }
+        const imgEl = document.createElement('img');
+        imgEl.classList.add('image')
+        imgEl.setAttribute('src', `../images/${emoji}.jpg`);
+        imgEl.setAttribute('width', 40);
+        imgEl.setAttribute('height', 40);
+        listItem.appendChild(imgEl);
+        emojiContainer.appendChild(listItem);
+      });
+    }
+
+    function showPreviewPanel(index) {
+      while(previewPanel.hasChildNodes()) {
+        previewPanel.removeChild(previewPanel.lastChild);
+      }
+
+      // create a new dom node
+    }
+
+    function handleKeyDown (event) {
+      let prevActiveIndex = activeIndex;
+      switch (event.which) {
+        case ARROW_KEYS.keyLeft:
+          if (activeIndex === 0) {
+            activeIndex = emojis.length - 1;
+          } else {
+            activeIndex = activeIndex - 1;
+          }
+        case ARROW_KEYS.keyRight:
+          activeIndex = activeIndex + 1;
+      }
+
+      activeIndex = activeIndex % emojis.length;
+
+      const emojiList = document.querySelectorAll('.list-item');
+      emojiList[prevActiveIndex].classList.remove('active');
+      emojiList[activeIndex].classList.add('active');
+      showPreviewPanel(emojiList, activeIndex);
+    }
+
+    textArea.addEventListener('input', function(event) {
+      filteredEmojis = emojis.filter(emoji => emoji.startsWith(event.target.value));
+      buildEmojiList(filteredEmojis);
+      showPreviewPanel
+    });
+
+    document.addEventListener('keydown', handleKeyDown);
+    buildEmojiList(emojis);
+
+  </script>
+
+</body>
+</html>

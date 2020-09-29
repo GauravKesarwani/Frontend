@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cube with css, Perspective example</title>
+  <style>
+    .side {
+      width: 80px;
+      height: 80px;
+      background-color: lightgray;
+      border: 1px solid black;
+      position: absolute;
+      line-height: 80px;
+      opacity: .3;
+      text-align: center;
+    }
+
+    .cube {
+      perspective: 500px;
+      left: 200px;
+      position: absolute;
+    }
+
+    .front {
+      transform: translateZ(40px);
+    }
+    .back {
+      transform: rotateY(-180deg) translateZ(40px);
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(40px);
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(40px);
+    }
+
+    .top {
+      transform: translateZ(40px) rotateX(90deg);
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(40px);
+    }
+  </style>
+</head>
+<body>
+  <div class="cube">
+    <div class="side front">1</div>
+    <div class="side bottom">2</div>
+    <div class="side left">3</div>
+    <div class="side right">4</div>
+    <div class="side top">5</div>
+    <div class="side back">6</div>
+  </div>
+</body>
+</html>

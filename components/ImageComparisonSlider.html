@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Comparison Slider</title>
+  <!-- This slider problem always confuses me -->
+  <!-- background-size, relative, absolute positioning, mousedown, mouseup & mousemove, getBoundingClientRect -->
+  <!-- how will you position images on top of one another -->
+  <!-- Edge cases: Prevent the slider from being positioned outside the container -->
+  <!-- use getBoundingClientRect() api to get the left and position of container -->
+  <style>
+    .container {
+      width: 300px;
+      height: 200px;
+      position: relative;
+      background-image: url('./../images/image2.jpeg');
+      background-size: 300px 200px;
+    }
+
+    .slider {
+      height: 100%;
+      width: 5px;
+      background-color: lightgray;
+      position: absolute;
+      left: 148px;
+    }
+
+    .image1 {
+      width: 148px;
+      height: 200px;
+      background-image: url('./../images/image1.jpeg');
+      background-size: 300px 200px;
+      position: absolute;
+      cursor: ew-resize;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image1"></div>
+        <div class="slider"></div>
+    </div>
+
+    <script>
+      const sliderContainer = document.querySelector('.container');
+      const sliderEl = document.querySelector('.slider');
+      const imageEl = document.querySelector('.image1');
+
+      let imageElWidth;
+      let containerOffsetLeft = sliderContainer.getBoundingClientRect().left;
+      let sliderElLeft = sliderEl.getBoundingClientRect().left;
+
+      let sliderPos = {
+        x: sliderElLeft - containerOffsetLeft,
+        offsetX: 0
+      };
+
+      let dragInProgress = false;
+      sliderEl.addEventListener('mousedown', handleMouseDown);
+
+      function handleMouseMove(event) {
+        if (!dragInProgress || (event.clientX >= sliderContainer.getBoundingClientRect().right) || (event.clientX <= sliderContainer.getBoundingClientRect().left)) {
+          return;
+        }
+        const offsetX = event.clientX - sliderPos.x;
+        imageEl.style.width = `${imageElWidth + offsetX}px`;
+        sliderEl.style.left = `${sliderPos.x + offsetX}px`
+        sliderPos.offsetX = offsetX;
+      }
+
+      function handleMouseUp(event) {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mousemup', handleMouseUp);
+        dragInProgress = false;
+        sliderPos.x += sliderPos.offsetX;
+      }
+
+      function handleMouseDown(event) {
+        event.preventDefault();
+        imageElWidth = imageEl.offsetWidth;
+        dragInProgress = true;
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+      }
+    </script>
+</body>
+</html>

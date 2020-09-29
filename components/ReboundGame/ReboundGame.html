@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <head>
+        <title>Button Chaser</title>
+        <style>
+            .game-container {
+                position: relative;
+                height: 100vh;
+                border: 1px solid navy;
+            }
+            
+            #button {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                background-color: blueviolet;
+            }
+
+            #score-board {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="score-board">0</div>
+        <div class="game-container">
+            <div id="button"></div>
+        </div>
+        <script>
+            const button = document.querySelector('#button');
+            const scoreBoard = document.querySelector('#score-board');
+            let buttonX;
+            let buttonY; 
+            let gameScore = 0;
+            let rightBound = 100 - (6600 / window.innerWidth);   // 50px + 16px
+            let topBound = 100 - (5000 / window.innerHeight); // 50px + 16px
+
+            const handleButtonClick = (event) => {
+                gameScore++;
+                scoreBoard.innerHTML = gameScore;
+            }
+
+            function initializeGame() {
+                setInterval(() => {
+                    buttonX = Math.floor(Math.random() * 100);
+                    buttonY = Math.floor(Math.random() * 100);
+               
+                    if (buttonX > rightBound) {
+                        buttonX = rightBound;
+                    }
+                
+                    if (buttonY > topBound) {
+                        buttonY = topBound;
+                    }
+                    button.style.left = buttonX + 'vw';
+                    button.style.top = buttonY + 'vh';
+                }, 2000);
+            }
+           
+            initializeGame();
+            button.addEventListener('click', handleButtonClick)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Accordion Component using vanilla javascript
+	<!-- React version: https://codepen.io/adamaoc/pen/wBGGQv -->
+	</title>
+	<style>
+		.accordion {
+			height: 500px;
+			width: 200px;
+		}
+
+		ul, li {
+			list-style: none;
+			padding: 0;
+		}
+
+		.accordion__item {
+			border: 1px solid #ccc;
+			margin: 1px 0;
+		}
+
+		.accordion__content {
+			height: 0;
+			overflow: hidden;
+			background-color: #FFF;
+			margin: 0;
+			padding: 0 8px;
+			transition-property: height;
+			transition-duration: .3s;
+		}
+
+		.accordion__title {
+			border: 0;
+			width: 100%;
+			background-color: #f6f6f6;
+			cursor: pointer;
+			outline: 0;
+		}
+	</style>
+</head>
+<body>
+	<ul class="accordion">
+		<li class="accordion__item">
+			<button class="accordion__title">Section 1</button>
+			<div class="accordion__content">
+				<p class="accordion__article">
+					Content will go here. Filling with some random content for now.
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.
+					Content will go here. Filling with some random content for now.
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+					Content will go here. Filling with some random content for now.
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+				<p>
+			</div>
+		</li>
+		<li class="accordion__item">
+			<button class="accordion__title">Section 2</button> 
+			<div class="accordion__content">
+				<p class="accordion__article">
+					Content will go here. Filling with some random content for now.
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+				</p>
+			</div>
+		</li>
+		<li class="accordion__item">
+			<button class="accordion__title">Section 3</button> 
+			<div class="accordion__content">
+				<p class="accordion__article">
+					Content will go here. Filling with some random content for now.
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+				</p>
+			</div>
+		</li>
+		<li class="accordion__item">
+			<button class="accordion__title">Section 4</button>
+			<div class="accordion__content">
+				<p class="accordion__article">
+					Content will go here. Filling with some random content for now.
+					Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
+				</p>
+			</div>
+		</li>
+	</ul>
+	<script>
+		const listElements = document.querySelectorAll('.accordion__content');
+		const accordionEl = document.querySelector('.accordion');
+		
+		function handleClick(event) {
+			Array.prototype.forEach.call(listElements, function(el) {
+				el.style.height = '0px';
+			});
+
+			if (event.target.classList.contains('accordion__title')) {
+				const nextElSibling = event.target.nextElementSibling;
+				console.log('nextSibling', nextElSibling);
+				const articleHeight = nextElSibling.firstElementChild.clientHeight;
+				nextElSibling.style.height = articleHeight + 'px';
+			}
+		}
+
+		accordionEl.addEventListener('click', handleClick);
+
+	</script>
+</body>
+</html>

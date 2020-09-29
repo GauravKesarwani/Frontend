@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recent Applicants</title>
+  <style>
+    .entity {
+      display: flex;
+      border-bottom: 1px solid lightgray;
+      padding: 5px;
+    }
+    .entity:first-child {
+      border-top: 1px solid lightgray;
+    }
+    .entity:hover {
+      background-color: lightblue;
+    }
+    .entity-avtar {
+      flex-basis: 6%;
+    }
+    .entity-detail {
+      flex-basis: 84%;
+    }
+    .entity-detail > dl {
+      display: flex;
+      flex-flow: row wrap;
+      margin: 4px 0;
+    }
+    .entity-detail > dl > dt {
+      flex-basis: 5%;
+    }
+    .entity-detail > dl > dd {
+      flex-basis: 95%;
+      margin: 0;
+    }
+    .entity-links {
+      flex-basis: 10%;
+    }
+    .entity-links > a {
+      display: block;
+      text-decoration: none;
+      display: none;
+    }
+    .entity:hover > .entity-links > a {
+      display: block;
+    }
+    .entity-detail > a > h3, h4, h5, h6 {
+      margin: 0;
+    }
+    .entity-detail > a {
+      text-decoration: none;
+    }
+    .featured {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <h2>Recent Applicants</h2>
+  <ul>
+    <li class="entity featured">
+      <div class="entity-avtar">
+        <img class="entity-img" src="../images/Anuj.jpeg" width="70" height="70" />
+      </div>
+      <div class="entity-detail">
+        <a href="#"><h3>Toon Link</h3></a>
+        <h4>Hero of Time</h4>
+        <h5>Hyrule | Athletics</h5>
+        <dl>
+          <dt>Phone:</dt><dd>555-555-5555</dd>
+          <dt>Email:</dt><dd><a href="#">link@triforce.com</a></dd>
+        </dl>
+
+      </div>
+      <div class="entity-links">
+        <div>Aug, 4, 2011</div>
+        <div>Featured Applicant</div>
+        <a class="save-resume" href="#" data-applicant-id="1">Save Resume</a>
+        <a href="#">View Resume</a>
+        <a href="#">Find References</a>
+      </div>
+    </li>
+    <li class="entity">
+      <div class="entity-avtar">
+        <img class="entity-img" src="../images/Anuj.jpeg" width="60" height="60" />
+      </div>
+      <div class="entity-detail">
+        <a href="#"><h3>Toon Link</h3></a>
+        <h4>Hero of Time</h4>
+        <h5>Hyrule | Athletics</h5>
+        <dl>
+          <dt>Phone:</dt><dd>555-555-5555</dd>
+          <dt>Email:</dt><dd><a href="#">link@triforce.com</a></dd>
+        </dl>
+      </div>
+      <div class="entity-links">
+        <div>Aug, 4, 2011</div>
+        <div>Featured Applicant</div>
+        <a href="#">Save Resume</a>
+        <a href="#">View Resume</a>
+        <a href="#">Find References</a>
+      </div>
+    </li>
+    <li class="entity">
+      <div class="entity-avtar">
+        <img class="entity-img" src="../images/Anuj.jpeg" width="60" height="60" />
+      </div>
+      <div class="entity-detail">
+        <a href="#"><h3>Toon Link</h3></a>
+        <h4>Hero of Time</h4>
+        <h5>Hyrule | Athletics</h5>
+        <dl>
+          <dt>Phone:</dt><dd>555-555-5555</dd>
+          <dt>Email:</dt><dd><a href="#">link@triforce.com</a></dd>
+        </dl>
+      </div>
+      <div class="entity-links">
+        <div>Aug, 4, 2011</div>
+        <div>Featured Applicant</div>
+        <a href="#">Save Resume</a>
+        <a href="#">View Resume</a>
+        <a href="#">Find References</a>
+      </div>
+    </li>
+  </ul>
+</body>
+</html>

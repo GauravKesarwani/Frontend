@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+  <head>
+    <title>CSS 3 animation</title>
+    <!-- animation-name, animation-duration, animation-iteration-count -->
+    <style>
+      .face {
+        position: relative;
+        width: 400px;
+        height: 400px;
+      }
+
+      @keyframes shake {
+        10% {
+          left: -80px;
+        }
+
+        20% {
+          left: 80px;
+        }
+
+        30% {
+          left: -60px;
+        }
+
+        40% {
+          left: 60px;
+        }
+
+        50% {
+          left: -40px;
+        }
+
+        60% {
+          left: 40px;
+        }
+
+        70% {
+          left: -20px;
+        }
+
+        80% {
+          left: 20px;
+        }
+
+        90% {
+          left: -10px;
+        }
+
+        100% {
+          left: 0px;
+        }
+      }
+
+      .face:hover {
+        animation-name: shake;
+        animation-duration: 0.82s;
+        animation-iteration-count: infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="face">
+      <img src="../images/teddy.png" />
+    </div>
+  </body>
+</html>

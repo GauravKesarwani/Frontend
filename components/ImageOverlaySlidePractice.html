@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Zoom Example</title>
+	<!-- apis: background-position, background-size, background-image -->
+	<style>
+		.image {
+			background-image: url('../images/image1.jpeg');
+			background-size: cover;			/* cover and contain*/
+			width: 200px;					/* mult factor = 5 */
+			height: 200px;
+		}
+
+		.zoom-area {
+			width: 200px;
+			height: 200px;
+			background-image: url('../images/image1.jpeg');
+			background-repeat: no-repeat;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="image"></div>
+	<div class="zoom-area"></div>
+	<script>
+		const imageArea = document.querySelector('.image');
+		const zoomArea = document.querySelector('.zoom-area');
+
+		function handleMouseMove (event) {
+			const mouseX = event.clientX;
+			const mouseY = event.clientY;
+
+			imageAreaRect = imageArea.getBoundingClientRect();
+			const left = imageAreaRect.left;
+			const top = imageAreaRect.top;
+			const posX = mouseX - left - 10;
+			const posY = mouseY - top - 10;
+
+			if (posX > 200 - 20) {
+				posX = 180;
+			}
+
+			if (posY > 200 - 20) {
+				posY = 180;
+			}
+			// how will you calculate the zoom ratio ?
+			// calculate the zoom factor.
+
+			const zoomX = 200 / 20;
+			const zoomY = 200 / 20;
+			zoomArea.style.backgroundSize = `${zoomX * 200}px ${zoomY * 200}px`
+			zoomArea.style.backgroundPosition = `-${posX * zoomX}px -${posY * zoomY}px`;
+
+		}
+		imageArea.addEventListener('mousemove', handleMouseMove);
+
+	</script>
+</body>
+</html>

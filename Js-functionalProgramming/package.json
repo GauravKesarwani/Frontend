@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Collection of frontend questions",
+  "main": "Example.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "frontend",
+    "html",
+    "css"
+  ],
+  "author": "gauravkesarwani",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.87.0"
+  }
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Slideshow</title>
+  <!--  add class, remove class from el, border radius, NodeList, horizontal and vertical alignment, flex, align-items, justify-content-->
+  <style>
+    .container {
+      height: 450px;
+      width: 800px;
+      margin: auto;
+    }
+
+    .content {
+      height: 380px;
+      position: relative;
+      text-align: center;
+    }
+
+    p {
+      display: none;
+    }
+
+    .content,
+    .indicators {
+      width: 100%;
+    }
+
+    .content {
+      background-color: lightgray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .indicators {
+      background-color: gray;
+    }
+
+    ul, li {
+      list-style: none;
+      margin: 0;
+    }
+
+    ul {
+      padding: 0;
+      text-align: center;
+    }
+
+    li {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background-color: black;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .prev, .next {
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .prev {
+      position: absolute;
+      left: 20px;
+      top: 49%;
+    }
+
+    .next {
+      position: absolute;
+      right: 20px;
+      top: 49%;
+    }
+
+    p.active-content {
+      display: block;
+    }
+
+    li.active {
+      background-color: #FFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="prev" onclick="handleClick(-1)">&#8249;</div>
+      <p class="active-content">I love you the more in that I believe you had liked me for my own sake and for nothing else</p>
+      <p>But man is not made for defeat. A man can be destroyed but not defeated.</p>
+      <p>I have not failed. I've just found 10,000 ways that won't work</p>
+      <div class="next" onclick="handleClick(+1)">&#8250;</div>
+    </div>
+    <ul class="indicators">
+      <li class="indicator active"></li>
+      <li class="indicator"></li>
+      <li class="indicator"></li>
+    </ul>
+  </div>
+
+  <script>
+      let active = 0;
+      let items = 3;
+      let indicators = document.querySelectorAll('.indicator');
+      let paragraphs = document.querySelectorAll('p');
+      indicators = Array.prototype.slice.call(indicators);
+      paragraphs = Array.prototype.slice.call(paragraphs);
+      function handleClick(delta) {
+        active = (active + delta);
+
+        if (active < 0) {
+          active = items - 1;
+        } else {
+          active = active % items;
+        }
+
+        indicators.forEach(i => i.classList.remove('active'));
+        indicators[active].classList.add('active');
+
+        paragraphs.forEach(p => p.classList.remove('active-content'));
+        paragraphs[active].classList.add('active-content');
+      }
+
+
+
+  </script>
+</body>
+</html>

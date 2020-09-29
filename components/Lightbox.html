@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+  <head>
+    <title>Css lightbox</title>
+    <!-- Note: Classnames which are applied have to be semantic, like red, green, blue and not item1, item2, item3 -->
+    <style>
+      .container {
+        display: flex;
+        width: 100px;
+        margin: auto;
+        flex-flow: row wrap;
+
+      }
+      .block {
+        width: 50px;
+        box-sizing: border-box;
+        height: 50px;
+        position: relative;
+        top: 100px;
+      }
+
+      .main {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        display: none;
+      }
+
+      .red > .main {
+        top: -100px;
+      }
+
+      .blue > .main {
+        top: -150px;
+      }
+
+      .yellow > .main {
+        top: -100px;
+        left: -50px;
+      }
+
+      .green > .main {
+        top: -150px;
+        left: -50px;
+      }
+
+      .red {
+        background-color: red;
+      }
+
+      .yellow {
+        background-color: yellow;
+      }
+
+      .blue {
+        background-color: blue;
+      }
+
+      .block:hover > .main {
+        display: block;
+      }
+
+      .green {
+        background-color: green;
+      }
+
+      /* Tricky part */
+      .container:hover > .block {
+        opacity: 0.5;
+      }
+
+      .container .block:hover {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="block red">
+        <div class="main red"></div>
+      </div>
+      <div class="block yellow">
+        <div class="main yellow"></div>
+      </div>
+      <div class="block blue">
+        <div class="main blue"></div>
+      </div>
+      <div class="block green">
+        <div class="main green"></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .text-area {
+      width: 300px;
+      height: 200px;
+    }
+
+    ul, li {
+      list-style: none;
+    }
+
+    .emoji-list {
+      display: flex;
+    }
+
+    .preview-pane {
+      width: 500px;
+      height: 200px;
+      border: 1px solid gray;
+    }
+
+    .active {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <!-- use semantic html tags-->
+  <main class="container">
+    <textarea class="text-area"></textarea>
+    <ul class="emoji-list"></ul>
+    <div class="preview-pane"></div>
+  </main>
+
+  <script type="text/javascript">
+    class Slack {
+      static KEYS = {
+        LEFT: 37,
+        RIGHT: 39
+      };
+
+      constructor() {
+        this._textAreaEl = document.querySelector('.text-area');
+        this._emojiListEl = document.querySelector('.emoji-list');
+        this._previewPaneEl = document.querySelector('.preview-pane');
+      
+        this._textAreaEl.addEventListener('input', this.handleInput);
+        this._emojiList = ['sad', 'loved', 'kiss']; 
+        this._filteredEmojiList = this._emojiList;
+        this._activeEmojiIdx = 0;
+        this.buildEmojiList();
+
+        // key event bindings
+
+        document.addEventListener('input', this.handleInput);
+        document.addEventListener('keydown', this.handleKeyDown);
+        //document.addEventListener('keyup', handleKeyUp);
+      }
+
+      handleInput = (event) => {
+        const value = event.target.value;
+        this._filteredEmojiList = this._emojiList.filter(emoji => emoji.startsWith(value));
+
+        this.buildEmojiList();
+      }
+
+      handleKeyDown = (event) => {
+        const keyCode = event.which;
+        let currentActiveIdx = this._activeEmojiIdx;
+        const emojiCount = this._filteredEmojiList.length;
+        switch (keyCode) {
+          case Slack.KEYS.LEFT: {
+            currentActiveIdx = (currentActiveIdx + 1) % emojiCount;
+            break;
+          }
+
+          case Slack.KEYS.RIGHT: {
+            currentActiveIdx = (currentActiveIdx === 0) ? emojiCount - 1 : (currentActiveIdx - 1) % emojiCount;
+            break;
+          }
+
+          default:
+            break;
+        }
+
+        this._activeEmojiIdx = currentActiveIdx;
+        const currentActiveEl = document.querySelector('.active');
+        currentActiveEl.classList.remove('active');
+        this._emojiListEl.children[currentActiveIdx].classList.add('active');
+        this.showPreview(currentActiveIdx);
+      }
+
+      buildEmojiList = () => {
+        while (this._emojiListEl.hasChildNodes()) {
+          this._emojiListEl.removeChild(this._emojiListEl.lastChild);
+        }
+
+        this._filteredEmojiList.forEach((emoji, idx) => {
+          const listItem = document.createElement('li');
+          idx === 0 ? listItem.classList.add('list-item', 'active') : listItem.classList.add('list-item');
+          const emojiImg = document.createElement('img');
+          emojiImg.setAttribute('src', `../images/${emoji}.jpg`);
+          emojiImg.setAttribute('width', '50');
+          emojiImg.setAttribute('height', '50');
+          listItem.appendChild(emojiImg);
+          this._emojiListEl.appendChild(listItem);
+        });
+
+        this.showPreview(0);
+      }
+
+      showPreview(currentActiveIdx) {
+        const emoji = this._filteredEmojiList[currentActiveIdx];
+        const imgEl = document.createElement('img');
+
+        while(this._previewPaneEl.hasChildNodes()) {
+          this._previewPaneEl.removeChild(this._previewPaneEl.lastChild);
+        }
+        imgEl.setAttribute('width', '200');
+        imgEl.setAttribute('height', '200');
+        imgEl.setAttribute('src', `../images/${emoji}.jpg`);
+        this._previewPaneEl.appendChild(imgEl);
+      }
+    }
+
+    const s = new Slack();
+    
+  </script>
+</body>
+</html>

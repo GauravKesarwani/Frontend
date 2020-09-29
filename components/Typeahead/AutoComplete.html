@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+  <title>Typeahead search</title>
+  <style>
+  	ul ,li {
+  		list-style: none;
+	}
+
+	ul, li {
+	  margin: 0;
+	  padding: 0;
+	}
+
+	.hide {
+	  display: none;
+	}
+
+	li:hover {
+	  background-color: lightgray;
+	}
+
+	.selected {
+	  background-color: lightgray; 
+	}
+  </style>
+</head>
+<body>
+  <div class="typeahead-container">
+    <input class="typeahead-input" type="text" value="">
+    <ul class="typeahead-list"></ul>
+  </div>
+
+  <script type="text/javascript">
+  		// Helper function to make the API call
+
+		// Events: input, change //
+		// The input event is fired every time the value of the element changes. This is unlike the change event, which only fires when the value is committed.
+		// dom api: hasChildNodes
+
+		// Filter items logic ?
+		// Open and close typeahead
+
+		const KeyCodes = {
+		  keyUp: 38,
+		  keyDown: 40
+		};
+
+		const getCharacters = (query) => fetch(`https://swapi.co/api/people/?search=${query}`)
+		 .then(response => response.json());
+
+		// Example of calling the API
+		// const str = 'luke';
+		// getCharacters(str)
+		//   .then((data)=>{
+		//       console.log(data.results.map(r=>r.name));
+		//   });
+
+		const inputEl = document.querySelector('.typeahead-input');
+		const listContainer = document.querySelector('.typeahead-list');
+		let numOfSearchResults = 0;
+
+		async function handleChange(event) {
+		  listContainer.classList.remove('hide');
+		  const searchStr = event.srcElement.value;
+		  const jsonResp = await getCharacters(searchStr);
+		  
+		  numOfSearchResults = jsonResp.results.length;
+		  while (listContainer.hasChildNodes()) {
+		    listContainer.removeChild(listContainer.lastChild);
+		  }
+		  jsonResp.results.forEach((r, index) => {
+		    if (r.name.startsWith(searchStr)) {
+		        const listItem = document.createElement('li');
+		        listItem.setAttribute('data-item-index', index);
+		        const textNode = document.createTextNode(r.name)
+		        listItem.appendChild(textNode);
+		        listContainer.appendChild(listItem);
+		    } 
+		  });
+		}
+
+		handleItemClick = (e) => {
+		    inputEl.value = e.target.innerText;
+		}
+
+		handleClick = (e) => {
+		    if (!e.target.classList.contains('typeahead-input')) {
+		        listContainer.classList.add('hide');  
+		    }
+		}
+
+		handleKeyNavigation = (event) => {
+		     const selectedItem = document.querySelector('.selected');
+		     if (selectedItem) {
+		        selectedItem.classList.remove('selected');
+		     }
+		     let selectedIndex = -1;
+		     if (selectedItem) {
+		         selectedIndex = parseInt(selectedItem.dataset.itemIndex, 10);
+		     }
+		     
+		     switch(event.which) {
+		        case KeyCodes.keyDown: {
+		           selectedIndex = (selectedIndex + 1) % numOfSearchResults;
+		           break;
+		        }
+		         
+		        case KeyCodes.keyUp: {
+		            if (selectedIndex === 0 || selectedIndex === -1)  {
+		              selectedIndex = numOfSearchResults - 1;
+		            } else {
+		              selectedIndex = selectedIndex - 1;
+		            }
+		          
+		          break;
+		        }
+		      }
+		 
+		    const nextItem = document.querySelector(`li[data-item-index="${selectedIndex}"]`);
+		    console.log('handle key navigation', selectedIndex);
+		    if (nextItem) {
+		       nextItem.classList.add('selected');
+		    }
+		   
+		  
+		}
+
+		inputEl.addEventListener('input', handleChange);
+		listContainer.addEventListener('click', handleItemClick);
+		document.addEventListener('keydown', handleKeyNavigation);
+		document.addEventListener('click', handleClick);
+  </script>
+</body>
+
+</html>

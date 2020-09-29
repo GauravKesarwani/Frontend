@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Transform</title>
+	<!-- https://www.tutorialrepublic.com/faq/how-to-remove-white-space-under-an-image-using-css.php -->
+	<style type="text/css">
+		.image {
+			box-shadow: 8px 8px 5px #aaaaaa;
+			display: inline-block;		
+		}
+
+		img {
+			display: block; /* because image is an inline element so browser adds extra white space under baseline to adjust other inline elements. */
+		}
+		.image1 {
+			transform: rotateZ(7deg);
+		}
+
+		.image2 {
+			transform: rotateZ(-7deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="image image1">
+		<img src="../../images/image1.jpeg" width="400" height="400" />
+	</div>
+	<div class="image image2">
+		<img src="../../images/image2.jpeg" width="400" height="400" />
+	</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+.collapsible {
+  background-color: #eee;
+  cursor: pointer;
+  padding: 12px;
+  font-size: 13px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  position: relative;
+  border-bottom: 4px solid #FFFFFF;
+  min-width: 480px;
+}
+
+.collapsible:focus {
+  outline: 0;
+}
+
+.collapsible:hover {
+  background-color: #E0E0E0;
+}
+
+.collapsible:before,
+.collapsible:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 22px;
+  height: 10px;
+  width: 2px;
+  border-radius: .3em;
+  background: #A9A9A9;
+  transition: all .5s ease-in-out;
+}
+
+.collapsible:before {
+  right: 20px;
+}
+
+.collapse .collapsible:before {
+  transform: translate(75%, -50%) rotate(-45deg);
+}
+
+.open .collapsible:before {
+  transform: translate(75%, -50%) rotate(45deg);
+}
+
+.collapsible:after {
+  right: 14px;
+}
+
+.collapse, .open {
+  width: 100%;
+}
+
+.collapse .collapsible:after {
+  transform: translate(75%, -50%) rotate(45deg);
+}
+
+.open .collapsible:after {
+  transform: translate(75%, -50%) rotate(-45deg);
+}
+
+.open .collapsible:before,
+.open .collapsible:after {
+  height: 10px;
+}
+
+.articlewrap {
+  transition: height .5s linear;
+}

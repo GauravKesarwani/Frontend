@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- How to create a html5 progress bar -->
+    <!-- progress -> min, max and value attributes <--></-->
+    <!-- done 28th July -->
+    <title>Progress bar</title>
+    <style>
+      progress {
+        -webkit-appearance: none;
+        display: inline-block;
+        height: 1em;
+      }
+
+      progress[value] {
+        width: 200px;
+        height: 30px;
+      }
+
+      progress[value]::-webkit-progress-bar {
+        background-color: #eee;
+        border-radius: 2px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+      }
+
+      @keyframes animate-stripes {
+        100% { background-position: -100px 0px; }
+      }
+
+      progress[value]::-webkit-progress-value {
+        background-image: linear-gradient(45deg, red, green, blue);
+        -webkit-animation: animate-stripes 5s linear infinite;
+        animation: animate-stripes 5s linear infinite;
+
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <progress id="progress-bar" min="0" max="200" value="10%"></progress>
+  </body>
+  <script type="text/javascript">
+    const progressBar = document.getElementById("progress-bar");
+    function changeProgress() {
+      let intervalId = setInterval(function () {
+        let value = progressBar.getAttribute('value');    // setAttribute and getAttribute api
+        value = parseInt(value, 10) + 10;
+
+        if (value >= 200) {
+          // you can clear interval inside setInterval
+          clearInterval(intervalId);    // clearTimeout and clearInterval
+        }
+
+        progressBar.setAttribute('value', "" + value);
+      }, 500);
+    }
+
+    window.addEventListener('load', changeProgress);
+  </script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transform Scale - Sept 19th</title>
+  <!-- position: (relative vs absolute), transition, width of parent and child, flex, scale, transform -->
+  <style>
+    .image {
+      display: block;
+      width: 100%;
+    }
+    .image-container {
+      position: relative;
+      width: 50%;
+    }
+    .image-overlay-zoom {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: red;
+      transform: scale(0);
+      transition-property: transform;
+      transition-duration: .5s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-container:hover > .image-overlay-zoom {
+      transform: scale(1);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="image-container">
+      <img src='./../../images/image1.jpeg' class="image"/>
+      <div class="image-overlay-zoom">Hello World!!</div>
+  </div>
+</body>
+</html>

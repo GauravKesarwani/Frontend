@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Slider</title>
+	<style>
+		.outer-container {
+			width: 250px;
+			height: 150px;
+			background-size: 250px 150px;
+			background-image: url('../images/image1.jpeg');
+			background-repeat: no-repeat;
+		}
+		.inner-container {
+			width: 50%;
+			height: 100%;
+			background-size: 250px 150px;
+			background-image: url('../images/image2.jpeg');
+			position: relative;
+			background-repeat: no-repeat;
+		}
+		.resize-handle {
+			width: 5px;
+			height: 100%;
+			background-color: #cecece;
+			left: 100%;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer-container">
+		<div class="inner-container">
+			<div class="resize-handle"></div>
+		</div>
+	</div>
+
+	<script>
+		let resizing = false;
+		const resizeHandle = document.querySelector('.resize-handle');
+		const innerContainer = document.querySelector('.inner-container');
+		const outerContainer = document.querySelector('.outer-container');
+
+		const resizeHandleRect = resizeHandle.getBoundingClientRect();
+		const innerContainerRect = innerContainer.getBoundingClientRect();
+		const outerContainerRect = outerContainer.getBoundingClientRect();
+
+		const start = {
+			x: resizeHandleRect.left
+		};
+
+		function handleMouseMove(event) {
+			if (!resizing || event.clientX >= outerContainerRect.right || event.clientX <= outerContainerRect.left) {
+				return;
+			}
+			const diff = event.clientX - start.x;
+			console.log('diff', diff);
+			console.log('inner container width', parseInt(getComputedStyle(innerContainer).getPropertyValue('width').replace('px', ''), 10));
+			innerContainer.style.width = (parseInt(getComputedStyle(innerContainer).getPropertyValue('width').replace('px', ''), 10) + diff) + 'px';
+			resizeHandle.style.left = (parseInt(getComputedStyle(resizeHandle).getPropertyValue('left').replace('px', ''), 10) + diff) + 'px';
+			start.x = event.clientX;
+		}
+
+		function handleMouseUp(event) {
+			resizing = false;
+			document.removeEventListener('mousemove', handleMouseMove);
+			document.removeEventListener('mouseup', handleMouseUp);
+		}
+
+		function handleMouseDown(event) {
+			resizing = true;
+			document.addEventListener('mousemove', handleMouseMove);
+			document.addEventListener('mouseup', handleMouseUp);
+			start.x = resizeHandleRect.left;
+		}
+
+		resizeHandle.addEventListener('mousedown', handleMouseDown);		
+	</script>
+</body>
+</html>

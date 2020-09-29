@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stop Watch using setInterval</title>
+</head>
+<body>
+  <div id="stopwatch"></div>
+  <button class="start">Start</button>
+  <button class="stop">Stop</button>
+  <button class="reset">Reset</button>
+</body>
+<script>
+  class StopWatch {
+    constructor() {
+      this._elapsedTime = 0;
+      this._intervalId = null;
+      this._stopwatch = document.getElementById('stopwatch');
+    }
+
+    start() {
+      this._startTime = Date.now();
+
+      this._intervalId = setInterval(() => {
+        this.update();
+      }, 100);
+    }
+
+    update() {
+      const d = Date.now();
+      const offset = d - this._startTime;
+      this._elapsedTime += offset;
+      this._startTime = d;
+      this._stopwatch.innerText = this._elapsedTime / 1000;
+    }
+    // pause the stop watch
+    stop() {
+      if (this._intervalId) {
+        clearInterval(this._intervalId);
+      }
+    }
+
+    getElapsedTime() {
+      return this._currentTime / 1000;
+    }
+
+    reset() {
+      this._currentTime = 0;
+    }
+  }
+
+  const stopWatchEl = document.getElementById('stopwatch');
+
+  const startBtn = document.querySelector('.start');
+  const stopBtn = document.querySelector('.stop');
+  const resetBtn = document.querySelector('.reset');
+
+  const stopwatch = new StopWatch();
+
+  startBtn.addEventListener('click', () => {
+    stopwatch.start()
+    const time = stopwatch.getElapsedTime();
+    //const d = new Date(time);
+    stopWatchEl.innerText = time;
+  });
+
+  stopBtn.addEventListener('click', () => {
+    stopwatch.stop();
+    const time = stopwatch.getElapsedTime();
+    stopwatch.innerText = time;
+  })
+
+</script>
+</html>

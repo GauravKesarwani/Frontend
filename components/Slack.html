@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Slack Practice</title>
+  <style type="text/css">
+    .text {
+      width: 500px;
+      height: 200px;
+    }
+
+    ul, li {
+      list-style: none;
+    }
+
+    .emoji-list {
+      display: flex;
+    }
+
+    li {
+      width: 40px;
+      height: 40px;
+    }
+
+    .active {
+      border: 1px solid green;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- use semantic tags -->
+  <main class="main-container">
+    <div class="inner-container">
+      <textarea class="text"></textarea>
+      <ul class="emoji-list"></ul>
+    </div>
+    <div class="preview-panel"></div>
+  </main>
+  <script>
+    class Slack {
+      static KEYS = {
+        LEFT: 37,
+        RIGHT: 39
+      };
+
+      constructor() {
+        this.images = ['sad', 'loved', 'kiss'];
+        this.activeIndex = 0;
+        this.emojiList = [];
+        this.filteredImages = this.images;
+        this.emojiListContainer = document.querySelector('.emoji-list');
+        document.addEventListener('keydown', this.handleKeyDown);
+        const textArea = document.querySelector('.text');
+        textArea.addEventListener('input', this.handleInputChange);
+        this.buildEmojiList();
+      }
+      
+      buildEmojiList = () => {
+        while (this.emojiListContainer.hasChildNodes()) {
+          this.emojiListContainer.removeChild(this.emojiListContainer.firstChild);
+        }
+        this.filteredImages.forEach((image, index) => {
+          const emojiItem = document.createElement('li');
+          const emojiImage = document.createElement('img');
+          emojiImage.setAttribute('src', `../images/${image}.jpg`);
+          emojiImage.setAttribute('width', 40);
+          emojiImage.setAttribute('height', 40);
+          emojiItem.classList.add('emoji');
+          this.emojiList.push(emojiItem);
+          emojiItem.appendChild(emojiImage); 
+          this.emojiListContainer.appendChild(emojiItem);
+
+          if (index === 0) {
+            emojiItem.classList.add('active');
+          }
+        });
+
+        this.showPreview(0);
+      }
+
+      handleKeyDown = (event) => {
+        const keyCode = event.which;
+        let activeIndex = this.activeIndex;
+        const emojisLength = this.filteredImages.length;
+        
+        if (keyCode !== Slack.KEYS.LEFT && keyCode !== Slack.KEYS.RIGHT) {
+          return;
+        }
+        switch (keyCode) {
+          case Slack.KEYS.LEFT: {
+            if (activeIndex === 0) {
+              activeIndex = emojisLength - 1;
+            } else {
+              activeIndex = (activeIndex - 1);
+            }
+            break;
+          }
+
+          case Slack.KEYS.RIGHT: {
+            activeIndex = (activeIndex + 1) % emojisLength;
+            break;
+          }
+
+          default: {
+            break;
+          }
+        }
+
+        this.activeIndex = activeIndex;
+        const currentActiveEmoji = document.querySelector('.emoji.active');
+        currentActiveEmoji.classList.remove('active');
+        this.emojiList[activeIndex].classList.add('active');
+        this.showPreview(activeIndex);
+      }
+
+      handleInputChange = (event) => {
+        const textValue = event.target.value; // this is value and not val.
+        this.filteredImages = this.images.filter(img => img.startsWith(textValue));
+        this.buildEmojiList();
+      }
+
+      showPreview = (activeIndex) => {
+        const previewPanel = document.querySelector('.preview-panel');
+        if (previewPanel.hasChildNodes()) {
+          previewPanel.removeChild(previewPanel.firstChild);
+        }
+        const previewImg = document.createElement('img');
+        previewImg.setAttribute('src', `../images/${this.filteredImages[activeIndex]}.jpg`);
+        previewImg.setAttribute('height', 200);
+        previewImg.setAttribute('width', 500);
+        previewPanel.appendChild(previewImg);
+      }
+    }
+
+    const sl = new Slack();
+  </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    Width of absolutely positioned & fixed element is sum of width of contents. You have to specify width as 100% for them to occupy space.
+
+    // scrollTop on document -> document.documentElement.scrollTop.
+  -->
+  <title>Scroll Indicator</title>
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    .wrapper-div {
+      height: 100%;
+    }
+
+    .scroll-indicator {
+      height: 10px;
+      margin: 10px 0;
+      background-color: yellow;
+      position: fixed;
+      width: 100%;
+    }
+
+    .scroll-progress {
+      height: 10px;
+      width: 0;
+      background-color: red;
+    }
+    .scrollable-content {
+      height: 200%;
+      background-color: lightgray;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper-div">
+    <div class="scroll-indicator">
+      <div class="scroll-progress"></div>
+    </div>
+
+    <div class="scrollable-content">Scroll down to see scroll progress</div>
+  </div>
+  <script>
+    const innerHeight = window.innerHeight;
+    const scrollableEl = document.querySelector('.scrollable-content');
+    const scrollProgressEl = document.querySelector('.scroll-progress');
+    function handleScroll() {
+      const scrollTop = document.documentElement.scrollTop;
+      const scrollProgress = scrollTop / innerHeight * 100;
+      console.log('scrollProgress', scrollProgress);
+      scrollProgressEl.style.width = scrollProgress + '%';
+    }
+
+
+    function debounce() {
+      let timeoutId;
+      const fn = function() {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(function() {
+            handleScroll();
+          }, 100);
+        }
+      }
+      return fn;
+    }
+
+
+    document.addEventListener('scroll', handleScroll);
+  </script>
+</body>
+</html>

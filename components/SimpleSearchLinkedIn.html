@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple LinkedIn Widget</title>
+  <style>
+    .post-widget {
+      width: 400px;
+      border: 1px solid lightgray;
+      padding: 8px 0px;
+    }
+    .header {
+      display: flex;
+      border-bottom: 1px solid lightgray;
+      margin: 0px;
+      padding: 0 10px;
+    }
+    .header > p {
+      flex: 90%;
+      margin: 0;
+      margin-bottom: 4px;
+    }
+    .header > p > a {
+      text-decoration: none;
+      color: #000;
+    }
+    .header > p > a:hover {
+      color: blue;
+      text-decoration: underline;
+    }
+    .header-links {
+      flex: 10%;
+    }
+    .header-links > span {
+      width: 3px;
+      height: 3px;
+      background-color: lightgray;
+      display: inline-block;
+    }
+    .section {
+      padding: 10px;
+    }
+    .section-entity {
+      display: flex;
+    }
+    .section-img {
+      border-radius: 50%;
+      flex: 20%;
+    }
+    .entity-detail {
+      flex: 80%;
+      margin-left: 10px;
+    }
+    .name {
+      margin: 0;
+    }
+    .section-detail {
+      position: relative;
+    }
+    .section-detail > .see-more {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      border: 0;
+      cursor: pointer;
+    }
+    .section-footer {
+      display: flex;
+    }
+    .footer {
+      border-top: 1px solid lightgray;
+      margin: 0 10px;
+      display: flex;
+    }
+    .footer > button {
+      border: 0;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    .footer > button:hover {
+      background-color: rgba(152,216,244,.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="post-widget">
+    <header class="header">
+      <p><a href="#">Debashish Mishra</a> likes this</p>
+      <div class="header-links">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <section class="section">
+      <div class="section-entity">
+        <a href="#"><img class="section-img" src="../images/Anuj.jpeg" width="50" height="50" /></a>
+        <div class="entity-detail">
+          <a class="href">
+            <h4 class="name">Punit Soni</h4>
+            <div class="title">CEO and Co-founder, Robin</div>
+            <div class="time-elapsed">5d</div>
+          </a>
+        </div>
+      </div>
+      <div class="section-detail">
+        <p>
+          We live in Airbnbs
+          We fly coachs
+          We office in a barebone location.
+        </p>
+        <button class="see-more">...see more</button>
+      </div>
+      <div class="section-footer">
+        <div class="likes-count"><span>14,515</span> Likes</div>
+        <div class="comments-count"><span>1,444</span> omments</div>
+      </div>
+    </section>
+    <footer class="footer">
+      <button class="like-btn"><span></span>Like</button>
+      <button class="comment-btn"><span></span>Comment</button>
+      <button class="share-btn"><span></span>Share</button>
+    </footer>
+  </div>
+</body>
+</html>

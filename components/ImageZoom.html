@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image zoom</title>
+  <!-- background position & background size, clientX, clientY, offsetLeft, offsetTop -->
+  <style>
+    .orig-image {
+      width: 300px;
+      height: 200px;
+      border: 1px solid red;
+      background-image: url('./../images/image1.jpeg');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .zoomed-image {
+      margin-top: 20px;
+      width: 300px;
+      height: 300px;
+      border: 1px solid black;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body>
+  <div class="orig-image"></div>
+  <div class="zoomed-image"></div>
+
+  <script>
+    const imgEl = document.querySelector('.orig-image');
+    imgEl.addEventListener('mousemove', handleMouseMove);
+
+    const zoomedImgEl = document.querySelector('.zoomed-image');
+
+    function handleMouseMove(event) {
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+
+      const imgX1 = imgEl.offsetLeft;
+      const imgY1 = imgEl.offsetTop;
+
+      const leftOffset = mouseX - imgX1;
+      const topOffset = mouseY - imgY1;
+
+      const posX = leftOffset - 20;
+      const posY = topOffset - 20;
+
+
+      console.log('posX', posX);
+      zoomedImgEl.style.backgroundPosition = `-${posX * 4}px -${posY * 4}px`;
+      zoomedImgEl.style.backgroundImage = "url('./../images/image1.jpeg')";
+      zoomedImgEl.style.backgroundSize = '1200px 800px';
+    }
+  </script>
+</body>
+</html>

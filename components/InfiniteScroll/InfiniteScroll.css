@@ -1,0 +1,14 @@
+ul, li {
+	list-style: none;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+}
+
+.scroll-item {
+	width: 200px;
+	height: 20px;
+	border: 1px solid red;
+}

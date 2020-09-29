@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Modal overlay</title>
+    <style>
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+          background-color: #fefefe;
+          margin: 15% auto; /* 15% from the top and centered */
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .show-modal {
+          display: block;
+        }
+
+        /* The Close Button */
+        .close {
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lectus risus, aliquet eget tincidunt sed, sagittis eget arcu. Vivamus eget lorem nunc. Mauris erat risus, ultricies et nulla non, ullamcorper malesuada libero. Curabitur porttitor, massa in feugiat elementum, metus urna bibendum orci, at cursus nunc mi ut ex. Aliquam erat volutpat. Proin dolor nulla, mollis non sollicitudin et, iaculis ut lacus. Nulla molestie mauris justo, sit amet venenatis leo aliquam tristique. Duis quis laoreet dolor. Nulla eget elementum mauris. Praesent luctus, mi non consectetur finibus, odio ipsum maximus ipsum, a mattis risus odio in erat. Nullam a purus eu nisi luctus convallis sit amet a metus. Cras semper nec nunc porta sagittis. Praesent vestibulum egestas arcu, vel commodo nisl ultricies a.
+
+      Vivamus vehicula magna non ullamcorper fringilla. Cras facilisis eu leo at ornare. Nulla facilisi. Proin vehicula mauris turpis, ac mollis nunc convallis dictum. Donec pellentesque maximus odio, ac placerat sapien cursus a. Quisque posuere congue orci, et elementum odio consectetur dapibus. Donec purus tortor, molestie vitae tincidunt eu, tincidunt fermentum tortor.
+
+      Nulla pellentesque sapien mi, laoreet laoreet leo consequat ut. Donec efficitur lacinia orci vitae tincidunt. Cras sollicitudin metus sed sollicitudin tincidunt. Aliquam id luctus velit. Nunc eu velit sed enim porttitor lacinia sit amet vel est. Donec cursus scelerisque nisi, non pretium dolor aliquam non. Vestibulum varius posuere viverra. Etiam iaculis lectus quis iaculis tempus. Sed turpis mauris, dapibus pulvinar diam id, euismod congue dui. Donec luctus lorem quis ligula imperdiet mattis.
+
+      Phasellus et metus et eros dignissim aliquet. Fusce a sapien eu leo tempus lobortis ac sit amet lectus. Nam efficitur vel diam a auctor. Aliquam placerat quam sem, quis lobortis nisl fringilla quis. Sed gravida rhoncus ex, et tincidunt neque dictum nec. Praesent imperdiet urna arcu, sed porta dui blandit quis. Donec eu eros vitae massa gravida vehicula ac sed ante. Aenean non ante laoreet, commodo est vitae, tempor lorem. Cras dui nisi, pretium sit amet tortor non, tempus tristique justo. Cras commodo pulvinar massa, a sodales est blandit in. Praesent feugiat fermentum rutrum. Donec urna metus, ornare ac augue vel, posuere varius lectus. Nullam quis commodo sem, vel commodo ante. Fusce fermentum purus vitae justo tempor, quis efficitur justo tincidunt. Sed molestie, velit vitae blandit sodales, libero nisi eleifend risus, in convallis odio lectus a eros.
+
+      Phasellus pellentesque pellentesque ipsum ac ultricies. Nulla condimentum id mi ac vehicula. Maecenas at aliquam nulla. Maecenas varius ante a tortor consequat, ac aliquam massa ultricies. Integer pharetra porta laoreet. Sed lobortis sem mi, quis viverra lacus varius et. Sed ornare nunc eu sapien porta, vestibulum tincidunt risus pulvinar.
+      </p>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+    </div>
+    <script>
+      // Get the modal
+      var modal = document.getElementById('myModal');
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks on the button, open the modal
+      btn.onclick = function() {
+        modal.classList.add('show-modal');
+      }
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.classList.remove('show-modal');
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Parallax Scrolling</title>
+  <style>
+    body, html {
+      height : 100%;
+      font-family : sans-serif;
+    }
+
+  .item {
+    position : relative;
+    height : 50vh;
+    text-indent : -9999px;
+    background-attachment : fixed;
+    background-position   : top center;
+    background-repeat: no-repeat;
+    background-size       : cover;
+  }
+
+
+  .bg__foo {
+    background-image : url(
+      https://s3-us-west-2.amazonaws.com/s.cdpn.io/30354/parallax1.jpg
+    );
+  }
+
+  .bg__bar {
+    background-image : url(
+      https://s3-us-west-2.amazonaws.com/s.cdpn.io/30354/parallax2.jpg
+    );
+  }
+
+  .bg__baz {
+    background-image : url(
+      https://s3-us-west-2.amazonaws.com/s.cdpn.io/30354/parallax3.jpg
+    );
+  }
+
+  .bg__bazz {
+    background-image : url(
+      https://s3-us-west-2.amazonaws.com/s.cdpn.io/30354/parallax1.jpg
+    );
+  }
+  </style>
+</head>
+<body>
+  <div class="parallax">
+    <div class="item bg__foo">foo</div>
+    <div class="item bg__bar">bar</div>
+    <div class="item bg__baz">baz</div>
+    <div class="item bg__bazz">bazz</div>
+  </div>
+</body>
+</html>

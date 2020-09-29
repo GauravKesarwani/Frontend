@@ -1,0 +1,134 @@
+<ul id="nav">
+  <li class="navitem">
+    <a href="/someLinkForItem1">Item 1</a>
+    <ul class="subnav">
+      <li>
+        <a href="/someLinkForItem2SubNav1">Item 1's Sub Nav 1</a>
+      </li>
+      <li>
+        <a href="/someLinkForItem2SubNav2">Item 1's Sub Nav 2</a>
+      </li>
+      <li>
+        <a href="/someLinkForItem2SubNav3">Item 1's Sub Nav 3</a>
+      </li>
+    </ul><!-- DON'T move the next <li> to a new line or it will add spacing if you use display: inline-block -->
+   </li>
+   <li class="navitem">
+     <a href="/someLinkForItem2">Item 2</a>
+     <ul class="subnav">
+       <li>
+         <a href="/someLinkForItem2SubNav1">Item 2's Sub Nav 1</a>
+       </li>
+       <li>
+         <a href="/someLinkForItem2SubNav2">Item 2's Sub Nav 2</a>
+       </li>
+       <li>
+         <a href="/someLinkForItem2SubNav3">Item 2's Sub Nav 3</a>
+       </li>
+     </ul><!-- DON'T move the next <li> to a new line or it will add spacing if you use display: inline-block -->
+   </li>
+   <li class="navitem">
+     <a href="/someLinkForItem3">Item 3</a>
+     <ul class="subnav">
+       <li>
+         <a href="/someLinkForItem2SubNav1">Item 3's Sub Nav 1</a>
+       </li>
+       <li>
+         <a href="/someLinkForItem2SubNav2">Item 3's Sub Nav 2</a>
+       </li>
+       <li>
+         <a href="/someLinkForItem2SubNav3">Item 3's Sub Nav 3</a>
+       </li>
+     </ul>
+   </li>
+ </ul>
+
+<style type="text/css">
+  /* SOME DEFAULT PAGE STYLES - NOT REQUIRED FOR EXERCISE */
+  body, #header, #body { margin: 0 auto; width: 980px; }
+  body { border: 1px solid #ccc; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; font-family: Arial, Helvetica; font-size: 13px; margin-top: 20px; padding: 10px; }
+  a { color: #069; text-decoration: none; }
+  h1 { font-size: 18px; }
+  p { margin-top: 10px; }
+
+  /* NAVIGATION MENU STYLES */
+
+
+  /* 2 Navigation menus, 1 using float: left, 1 using display: inline-block */
+  #nav {
+    border: 1px solid red;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+
+  /* Since I am floating the <li>'s, I need to clear floats.  overflow: hidden would work, but hides the subnav menus */
+  #nav:after {
+    clear: both;
+    content: " ";
+    display: block;
+    visibility: hidden;
+  }
+
+
+  /* Common class to both menu's nav items */
+  .navitem {
+    background-color: #ddd;
+    border: 1px solid green;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 50px;
+    height: 50px;
+    min-width: 15%;
+    text-align: center;
+
+    /* Can use either float: left or display: inline-block */
+    float: left;
+
+    display: inline-block;
+    *zoom: 1;         /* IE 7 inline-block fix */
+    *display: inline; /* IE 7 inline-block fix */
+  }
+
+  /* This rule fixes IE 7 position: relative issues */
+  li.navitem:hover {
+    position: relative;
+  }
+
+
+  /* Common class to sub menus */
+  .subnav {
+    background-color: #eee;
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: -110px;
+    z-index: 100;
+  }
+
+  /*
+  Allowing the hover to work
+
+
+  To support IE 6, you need to place the .subnav <ul> INSIDE the <a> and use that in the CSS.  NOT semantic though
+  */
+  li.navitem:hover .subnav {
+    display: block;
+  }
+
+
+  /* Overrides for sub menu */
+  .subnav li {
+    line-height: 20px;
+  }
+
+
+  .subnav li:hover {
+    background-color: #069;
+  }
+
+
+  .subnav li:hover a {
+    color: #fff;
+  }
+  </style>
